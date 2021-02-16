@@ -1,6 +1,7 @@
 // TP GESTION D'UNE BIBLIOTHEQUE 
 #include "biblio.h"
 #include "saveload.h"
+#include "menu.h"
 
 int menu(){
 	int choix;
@@ -52,7 +53,10 @@ int main() {
 			case 2 : 
 				reponse=afficherBibliotheque(&B);
 				if (reponse==0)	printf("La bibliotheque est vide");
-			break;	
+			break;
+			case 3 :
+				reponse = searchBook(&B);
+				if (reponse == 0) printf("Aucun livre n'a été trouvé\n");
 		}
 
 	} while(chx!=0);
