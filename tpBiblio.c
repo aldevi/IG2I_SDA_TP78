@@ -1,6 +1,7 @@
 // TP GESTION D'UNE BIBLIOTHEQUE 
 #include "biblio.h"
 #include "saveload.h"
+#include "menu.h"
 
 int menu(){
 	int choix;
@@ -44,15 +45,48 @@ int main() {
 	do {
 		chx= menu();
 		switch(chx){
-			case  1 : 
+			case  1 : //Ajout livre - auteur
 				reponse = ajouterLivre(   &B  );
 				if (reponse==1) printf(" ajout reussi !!");
 				else printf("impossible d ajouter (bibliotheque pleine)");
 			break;
-			case 2 : 
+
+			case 2 : //Afficher livre - auteur
 				reponse=afficherBibliotheque(&B);
 				if (reponse==0)	printf("La bibliotheque est vide");
-			break;	
+			break;
+
+			case 3 :
+
+			break;
+
+			case 4 :
+				searchAuthor(&B);
+			break;
+
+			case 5 :
+				
+			break;
+
+			case 6 :
+
+			break;
+
+			case 7 :
+
+			break;
+
+			case 8 :
+
+			break;
+
+			case 9 :
+
+			break;
+
+			case 10 :
+
+			break;
 		}
 
 	} while(chx!=0);
