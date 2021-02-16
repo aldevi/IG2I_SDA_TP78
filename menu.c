@@ -1,6 +1,7 @@
 #include "menu.h"
 #include "biblio.h"
 #include "livre.h"
+#include "date.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -53,4 +54,26 @@ void removeBook(T_Bibliotheque *ptrB){
         }
         ptrB->nbLivres--;
     }
+}
+
+int borrowBook(T_Bibliotheque *biblio) {
+    char code[MAX_CODE];
+    char emp_name[MAX];
+
+    lireChaine(code, "CODE : ", MAX_CODE);
+    lireChaine(emp_name, "EMPRUNTEUR : ", MAX);
+
+    int i = 0;
+    while (i < biblio->nbLivres && (strcmp(code, biblio->etagere[i].code) == 0)) {
+        i++;
+    }
+
+    if (strcmp(biblio->etagere[i].code, code)) {
+        return 0;
+    }
+
+    strcpy(biblio->etagere[i].emprunteur.nomemprunteur, emp_name);
+    lireDateSysteme(&biblio->etagere[i].emprunteur);
+
+    return 1;
 }
