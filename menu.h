@@ -7,4 +7,6 @@ int searchBook(T_Bibliotheque *biblio);
 int searchAuthor(T_Bibliotheque *ptrB);
 int removeBook(T_Bibliotheque *ptrB);
 int borrowBook(T_Bibliotheque *biblio);
+int sortByAuthor(T_Bibliotheque *ptrB);
+
 #endif

@@ -28,6 +28,7 @@ int searchBook(T_Bibliotheque *biblio) {
         return 0;
     }
 }
+
 int searchAuthor(T_Bibliotheque *ptrB){
     int i;
     char aut[MAX];
@@ -83,6 +84,30 @@ int borrowBook(T_Bibliotheque *biblio) {
     lireDateSysteme(&biblio->etagere[i].emprunteur);
 
     return 1;
+}
+
+int sortByAuthor(T_Bibliotheque *ptrB){
+
+    if(ptrB->nbLivres > 0){
+        int i;
+        int j;
+        int ref;
+            for(i=0 ; i <= ptrB->nbLivres ; i++){
+                ref = i;
+                for(j=i+1 ; j < ptrB->nbLivres ; j++){
+                    printf("Auteur J : %s\n", ptrB->etagere[j].auteur);
+                    printf("Auteur Ref : %s\n", ptrB->etagere[ref].auteur);
+                    printf("strcmp : %d\n", strcmp(ptrB->etagere[j].auteur, ptrB->etagere[ref].auteur));
+                    if(strcmp(ptrB->etagere[j].auteur, ptrB->etagere[ref].auteur) < 0) ref=j;
+                }
+                if(ref != i){
+                    printf("On swap !\n");
+                    switchBook(&(ptrB->etagere[i]), &(ptrB->etagere[ref]));
+                }
+            }
+        return 1;
+    }
+    else return 0;
 }
 
 void switchBook(T_livre *ptrA, T_livre *ptrB){
