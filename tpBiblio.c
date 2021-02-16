@@ -65,7 +65,7 @@ int main() {
 			break;
 
 			case 5 :
-				
+				removeBook(&B);
 			break;
 
 			case 6 :
