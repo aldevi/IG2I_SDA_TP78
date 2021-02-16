@@ -49,6 +49,6 @@ return chaine;
 
 void afficherChaine(const char *nomChamp, const char *valeur)
 {
-printf("%s %s",nomChamp,valeur);
+printf("%s %s\n",nomChamp,valeur);
 
 }
