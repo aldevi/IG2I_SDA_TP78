@@ -4,7 +4,7 @@
 #include "biblio.h"
 
 int searchBook(T_Bibliotheque *biblio);
-void searchAuthor(T_Bibliotheque *ptrB);
-void removeBook(T_Bibliotheque *ptrB);
+int searchAuthor(T_Bibliotheque *ptrB);
+int removeBook(T_Bibliotheque *ptrB);
 
 #endif

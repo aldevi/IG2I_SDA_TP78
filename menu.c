@@ -25,32 +25,61 @@ int searchBook(T_Bibliotheque *biblio) {
         return 0;
     }
 }
-void searchAuthor(T_Bibliotheque *ptrB){
+int searchAuthor(T_Bibliotheque *ptrB){
     int i;
     char aut[MAX];
-    lireChaine("Auteur : ", aut, MAX);
-    for (i=0 ; i<ptrB->nbLivres ; i++){
-        if(strcmp(ptrB->etagere[i].auteur, aut) == 0) afficherLivre(&(ptrB->etagere[i]));
+    if(ptrB->nbLivres>0){
+        lireChaine("Auteur : ", aut, MAX);
+        for (i=0 ; i<ptrB->nbLivres ; i++){
+            if(strcmp(ptrB->etagere[i].auteur, aut) == 0) afficherLivre(&(ptrB->etagere[i]));
+        }
+        return 1;
     }
+    else return 0;
 }
 
-void removeBook(T_Bibliotheque *ptrB){
+int removeBook(T_Bibliotheque *ptrB){
     int i;
     int pos = 0;
     char titre[MAX_TITRE];
-    lireChaine("Livre : ", titre, MAX_TITRE);
-    for(i=0 ; i<ptrB->nbLivres ; i++){
-        if(strcmp(ptrB->etagere[i].titre, titre) == 0) {
-            pos = i;
+    if(ptrB->nbLivres > 0){
+        lireChaine("Livre : ", titre, MAX_TITRE);
+        for(i=0 ; i<ptrB->nbLivres ; i++){
+            if(strcmp(ptrB->etagere[i].titre, titre) == 0) {
+                pos = i;
+            }
         }
-    }
-    if(pos == 0) printf("Votre livre n'existe pas !\n");
-    else {
         while(pos<ptrB->nbLivres){
             strcpy(ptrB->etagere[pos].titre, ptrB->etagere[pos+1].titre);
             strcpy(ptrB->etagere[pos].auteur, ptrB->etagere[pos+1].auteur);
             pos++;
         }
         ptrB->nbLivres--;
+        return 1;
     }
+    else return 0;
+}
+
+
+int sortByTitle(T_Bibliotheque *ptrB){
+
+    if(ptrB->nbLivres > 0){
+        int i;
+        int j;
+        int ref;
+        char aux[K_MaxTit];
+        for (i=0 ; i<= ptrB->nbLivres ; i++){
+            ref = i;
+            for(j=i+1; j < ptrB->nbLivres ; j++){
+                if(strcmp(ptrB->etagere[ref].titre, ptrB->etagere[j].titre) > 0) ref=j;
+            }
+            if(ref != i) {
+                strcpy(aux, ptrB->etagere[ref].titre);
+                strcpy(ptrB->etagere[ref].titre, ptrB->etagere[i].titre);
+                strcpy(ptrB->etagere[i].titre, aux);
+            }
+        }
+        return 1;
+    }
+    else return 0;
 }

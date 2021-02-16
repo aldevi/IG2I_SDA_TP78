@@ -60,11 +60,13 @@ int main() {
 				if (reponse == 0) printf("Aucun livre n'a été trouvé\n");
 			break;
 			case 4 :
-				searchAuthor(&B);
+				reponse = searchAuthor(&B);
+				if (reponse == 0) printf("La bibliothèque est vide\n");
 			break;
 
 			case 5 :
-				removeBook(&B);
+				reponse = removeBook(&B);
+				if (reponse == 0) printf("La bibliothèque est vide\n");
 			break;
 
 			case 6 :
