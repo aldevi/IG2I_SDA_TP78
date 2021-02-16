@@ -79,11 +79,12 @@ int main() {
 			break;
 
 			case 8 :
-
+				
 			break;
 
 			case 9 :
-
+				reponse = sortByAuthor(&B);
+				if (reponse == 0) printf("La bibliothèque est vide\n");
 			break;
 
 			case 10 :

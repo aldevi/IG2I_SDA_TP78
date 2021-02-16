@@ -5,6 +5,8 @@
 #include <string.h>
 #include <stdio.h>
 
+void switchBook(T_livre *ptrA, T_livre *ptrB);
+
 int searchBook(T_Bibliotheque *biblio) {
     int books_found = 0;
 
@@ -81,4 +83,48 @@ int borrowBook(T_Bibliotheque *biblio) {
     lireDateSysteme(&biblio->etagere[i].emprunteur);
 
     return 1;
+}
+
+void switchBook(T_livre *ptrA, T_livre *ptrB){
+    int iaux;
+    char caux[500];
+
+    //On echange les codes
+    strcpy(caux, ptrA->code);
+    strcpy(ptrA->code, ptrB->code);
+    strcpy(ptrB->code, caux);
+    
+    //On echange les titres
+    strcpy(caux, ptrA->titre);
+    strcpy(ptrA->titre, ptrB->titre);
+    strcpy(ptrB->titre, caux);
+
+    //On echange les auteurs
+    strcpy(caux, ptrA->auteur);
+    strcpy(ptrA->auteur, ptrB->auteur);
+    strcpy(ptrB->auteur, caux);
+
+    //On echange les editeurs
+    strcpy(caux, ptrA->editeur);
+    strcpy(ptrA->editeur, ptrB->editeur);
+    strcpy(ptrB->editeur, caux);
+
+    //On echange les dates
+    iaux = ptrA->annee;
+    ptrA->annee = ptrB->annee;
+    ptrB->annee = iaux;
+
+    //On echange les emprunteurs
+    //On echange les noms des emprunteurs
+    strcpy(caux, ptrA->emprunteur.nomemprunteur);
+    strcpy(ptrA->emprunteur.nomemprunteur, ptrB->emprunteur.nomemprunteur);
+    strcpy(ptrA->emprunteur.nomemprunteur, caux);
+
+    //On echange le jour
+
+    //On echange la date
+
+    //On echange le mois
+
+    //On echange l'annee
 }
