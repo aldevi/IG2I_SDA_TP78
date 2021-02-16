@@ -58,6 +58,7 @@ int main() {
 			case 3 :
 				reponse = searchBook(&B);
 				if (reponse == 0) printf("Aucun livre n'a été trouvé\n");
+			break;
 			case 4 :
 				searchAuthor(&B);
 			break;
