@@ -1,6 +1,7 @@
 #include "menu.h"
 #include "biblio.h"
 #include "livre.h"
+#include "date.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -60,26 +61,24 @@ int removeBook(T_Bibliotheque *ptrB){
     else return 0;
 }
 
+int borrowBook(T_Bibliotheque *biblio) {
+    char code[MAX_CODE];
+    char emp_name[MAX];
 
-int sortByTitle(T_Bibliotheque *ptrB){
+    lireChaine(code, "CODE : ", MAX_CODE);
+    lireChaine(emp_name, "EMPRUNTEUR : ", MAX);
 
-    if(ptrB->nbLivres > 0){
-        int i;
-        int j;
-        int ref;
-        char aux[K_MaxTit];
-        for (i=0 ; i<= ptrB->nbLivres ; i++){
-            ref = i;
-            for(j=i+1; j < ptrB->nbLivres ; j++){
-                if(strcmp(ptrB->etagere[ref].titre, ptrB->etagere[j].titre) > 0) ref=j;
-            }
-            if(ref != i) {
-                strcpy(aux, ptrB->etagere[ref].titre);
-                strcpy(ptrB->etagere[ref].titre, ptrB->etagere[i].titre);
-                strcpy(ptrB->etagere[i].titre, aux);
-            }
-        }
-        return 1;
+    int i = 0;
+    while (i < biblio->nbLivres && (strcmp(code, biblio->etagere[i].code) == 0)) {
+        i++;
     }
-    else return 0;
+
+    if (strcmp(biblio->etagere[i].code, code)) {
+        return 0;
+    }
+
+    strcpy(biblio->etagere[i].emprunteur.nomemprunteur, emp_name);
+    lireDateSysteme(&biblio->etagere[i].emprunteur);
+
+    return 1;
 }
