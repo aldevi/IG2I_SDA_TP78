@@ -55,11 +55,9 @@ int main() {
 				reponse=afficherBibliotheque(&B);
 				if (reponse==0)	printf("La bibliotheque est vide");
 			break;
-
 			case 3 :
-
-			break;
-
+				reponse = searchBook(&B);
+				if (reponse == 0) printf("Aucun livre n'a été trouvé\n");
 			case 4 :
 				searchAuthor(&B);
 			break;
