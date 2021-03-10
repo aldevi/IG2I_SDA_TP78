@@ -13,7 +13,6 @@ int searchBook(T_Bibliotheque *biblio) {
     char title[MAX_TITRE];
     lireChaine("TITRE :", title, MAX_TITRE );
 
-
     for (int i = 0; i < biblio->nbLivres; i++) {
         if (strcmp(title, biblio->etagere[i].titre) == 0) {
             books_found++;
@@ -21,7 +20,6 @@ int searchBook(T_Bibliotheque *biblio) {
             afficherLivre(&biblio->etagere[i]);
         }
     }
-
     if (books_found > 0) {
         return 1;
     } else {
@@ -86,25 +84,31 @@ int borrowBook(T_Bibliotheque *biblio) {
     return 1;
 }
 
-int sortByAuthor(T_Bibliotheque *ptrB){
-
+int sortByTitle(T_Bibliotheque *ptrB){
     if(ptrB->nbLivres > 0){
         int i;
         int j;
         int ref;
-            for(i=0 ; i <= ptrB->nbLivres ; i++){
-                ref = i;
-                for(j=i+1 ; j < ptrB->nbLivres ; j++){
-                    printf("Auteur J : %s\n", ptrB->etagere[j].auteur);
-                    printf("Auteur Ref : %s\n", ptrB->etagere[ref].auteur);
-                    printf("strcmp : %d\n", strcmp(ptrB->etagere[j].auteur, ptrB->etagere[ref].auteur));
-                    if(strcmp(ptrB->etagere[j].auteur, ptrB->etagere[ref].auteur) < 0) ref=j;
-                }
-                if(ref != i){
-                    printf("On swap !\n");
-                    switchBook(&(ptrB->etagere[i]), &(ptrB->etagere[ref]));
-                }
-            }
+        for(i=0 ; i <= ptrB->nbLivres ; i++){
+            ref = i;
+            for(j=i+1 ; j < ptrB->nbLivres ; j++) if(strcmp(ptrB->etagere[j].titre, ptrB->etagere[ref].titre) < 0) ref=j;
+            if(ref != i) switchBook(&(ptrB->etagere[i]), &(ptrB->etagere[ref]));
+        }
+        return 1;
+    }
+    else return 0;
+}
+
+int sortByAuthor(T_Bibliotheque *ptrB){
+    if(ptrB->nbLivres > 0){
+        int i;
+        int j;
+        int ref;
+        for(i=0 ; i <= ptrB->nbLivres ; i++){
+            ref = i;
+            for(j=i+1 ; j < ptrB->nbLivres ; j++) if(strcmp(ptrB->etagere[j].auteur, ptrB->etagere[ref].auteur) < 0) ref=j;
+            if(ref != i) switchBook(&(ptrB->etagere[i]), &(ptrB->etagere[ref]));
+        }
         return 1;
     }
     else return 0;

@@ -79,7 +79,8 @@ int main() {
 			break;
 
 			case 8 :
-				
+				reponse = sortByTitle(&B);
+				if (reponse == 0) printf("La biliothèque est vide\n");
 			break;
 
 			case 9 :
