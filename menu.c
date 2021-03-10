@@ -222,3 +222,19 @@ int returnBook(T_Bibliotheque *biblio) {
 
     return 1;
 }
+
+int availableBooks(T_Bibliotheque *ptrB){
+    if(ptrB->nbLivres > 0){
+        int i;
+		printf("--------------------------------------\n");
+        for (i=0 ; i<ptrB->nbLivres ; i++) {
+            if(strcmp(ptrB->etagere[i].emprunteur.nomemprunteur, "") == 0) {
+			    printf("\tEtagere %d\n", i);
+                afficherLivre(&(ptrB->etagere[i]));
+        		printf("--------------------------------------\n");
+            }
+        }
+        return 1;
+    }
+    else return 0;
+}
