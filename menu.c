@@ -140,6 +140,9 @@ int sortByYear(T_Bibliotheque *ptrB){
 }
 
 void switchBook(T_livre *ptrA, T_livre *ptrB){
+    T_Jour jaux;
+    T_Mois maux;
+    T_annee aaux;
     int iaux;
     char caux[500];
 
@@ -172,15 +175,27 @@ void switchBook(T_livre *ptrA, T_livre *ptrB){
     //On echange les noms des emprunteurs
     strcpy(caux, ptrA->emprunteur.nomemprunteur);
     strcpy(ptrA->emprunteur.nomemprunteur, ptrB->emprunteur.nomemprunteur);
-    strcpy(ptrA->emprunteur.nomemprunteur, caux);
+    strcpy(ptrB->emprunteur.nomemprunteur, caux);
 
     //On echange le jour
+    jaux = ptrA->emprunteur.lejour;
+    ptrA->emprunteur.lejour = ptrB->emprunteur.lejour;
+    ptrB->emprunteur.lejour = jaux;
 
     //On echange la date
+    iaux = ptrA->emprunteur.ledate;
+    ptrA->emprunteur.ledate = ptrB->emprunteur.ledate;
+    ptrB->emprunteur.ledate = iaux;
 
     //On echange le mois
+    maux = ptrA->emprunteur.lemois;
+    ptrA->emprunteur.lemois = ptrB->emprunteur.lemois;
+    ptrB->emprunteur.lemois = maux;
 
     //On echange l'annee
+    aaux = ptrA->emprunteur.lannee;
+    ptrA->emprunteur.lannee = ptrB->emprunteur.lannee;
+    ptrB->emprunteur.lannee = aaux;
 }
 
 int returnBook(T_Bibliotheque *biblio) {
