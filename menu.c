@@ -2,6 +2,7 @@
 #include "biblio.h"
 #include "livre.h"
 #include "date.h"
+#include <time.h>
 #include <string.h>
 #include <stdio.h>
 
@@ -230,6 +231,29 @@ int availableBooks(T_Bibliotheque *ptrB){
 			    printf("\tEtagere %d\n", i);
                 afficherLivre(&(ptrB->etagere[i]));
         		printf("--------------------------------------\n");
+            }
+        }
+        return 1;
+    }
+    else return 0;
+}
+
+int printOverduedBooks(T_Bibliotheque *ptrB){
+    if (ptrB->nbLivres > 0){
+        long int tps = time(NULL); //Temps maintenant
+        int duree = 5;
+        int i;
+		printf("------------ LIVRES EN RETARD ---------\n");
+        for (i=0 ; i < ptrB->nbLivres ; i++){
+            /*printf("Livre epoch : %ld\n", ptrB->etagere[i].emprunteur.epoch);
+            printf("tps : %ld\n", tps);*/
+            if(strcmp(ptrB->etagere[i].emprunteur.nomemprunteur, "") != 0){
+                if(((tps - ptrB->etagere[i].emprunteur.epoch)/duree) > 1){
+			        printf("\tEtagere %d\n", i);
+                    afficherLivre(&(ptrB->etagere[i]));
+        		    printf("--------------------------------------\n");
+                
+                }
             }
         }
         return 1;

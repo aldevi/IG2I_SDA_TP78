@@ -13,5 +13,6 @@ int sortByAuthor(T_Bibliotheque *ptrB);
 int sortByTitle(T_Bibliotheque *ptrB);
 int sortByYear(T_Bibliotheque *ptrB);
 int availableBooks(T_Bibliotheque *ptrB);
+int printOverduedBooks(T_Bibliotheque *ptrB);
 
 #endif

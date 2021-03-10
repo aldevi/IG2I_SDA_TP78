@@ -8,6 +8,7 @@ void lireDateSysteme(T_Emp *E) {
 
     E->lannee = tm.tm_year+1900;
     E->ledate = tm.tm_mday;
+    E->epoch = t;
 
     switch (tm.tm_wday) {
         case 1:

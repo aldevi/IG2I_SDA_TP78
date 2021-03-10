@@ -33,6 +33,7 @@ T_Jour lejour;
 int ledate;
 T_Mois lemois;
 int lannee;
+long int epoch;
 }T_Emp ;
 
 // debut de TP, on utilisera les 2 champs titre et auteur

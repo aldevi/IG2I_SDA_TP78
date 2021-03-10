@@ -25,8 +25,8 @@ int menu(){
 
 	// si les 5 choix (6-10) sont bien codés, changez le type T_Emp et remplacez-le par la structure T_Emp visible dans livre.h
 	// vous pourrez alors faire les menus 11,12,etc...
-	printf("\n 11- lister les livres disponibles "); 
-	// printf("\n 12 - lister les emprunts en retard "); //on suppose qu'un emprunt dure 7 jours.
+	printf("\n 11 - lister les livres disponibles "); 
+	printf("\n 12 - lister les emprunts en retard "); //on suppose qu'un emprunt dure 7 jours.
 	// printf("\n 13 - ... imaginez vous même vos propres fonctionnalités ")
 
 	printf("\n 0 - QUITTER");
@@ -97,6 +97,11 @@ int main() {
 			case 11 :
 				reponse = availableBooks(&B);
 				if(reponse == 0) printf("La bibliothèque est vide\n");
+			break;
+
+			case 12 :
+				reponse = printOverduedBooks(&B);
+				if (reponse == 0) printf("La bibliothèque est vide\n");
 			break;
 		}
 
