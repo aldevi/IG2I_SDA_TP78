@@ -67,20 +67,29 @@ int borrowBook(T_Bibliotheque *biblio) {
     char code[MAX_CODE];
     char emp_name[MAX];
 
-    lireChaine(code, "CODE : ", MAX_CODE);
-    lireChaine(emp_name, "EMPRUNTEUR : ", MAX);
+    lireChaine("CODE : ", code, MAX_CODE);
+    lireChaine("EMPRUNTEUR : ", emp_name, MAX);
 
     int i = 0;
-    while (i < biblio->nbLivres && (strcmp(code, biblio->etagere[i].code) == 0)) {
+    int book_index;
+    while (i < biblio->nbLivres) {
+        if (strcmp(code, biblio->etagere[i].code) == 0) {
+            book_index = i;
+        }
         i++;
     }
 
-    if (strcmp(biblio->etagere[i].code, code)) {
+    // printf("%d\n", book_index);
+    // printf("%s\n", biblio->etagere[i].code);
+
+
+    // If the book was found AND if the book is borrowed
+    if ((strcmp(biblio->etagere[book_index].code, code) != 0) || (strcmp(biblio->etagere[book_index].emprunteur.nomemprunteur, "") != 0)) {
         return 0;
     }
 
-    strcpy(biblio->etagere[i].emprunteur.nomemprunteur, emp_name);
-    lireDateSysteme(&biblio->etagere[i].emprunteur);
+    strcpy(biblio->etagere[book_index].emprunteur.nomemprunteur, emp_name);
+    lireDateSysteme(&biblio->etagere[book_index].emprunteur);
 
     return 1;
 }
@@ -172,4 +181,29 @@ void switchBook(T_livre *ptrA, T_livre *ptrB){
     //On echange le mois
 
     //On echange l'annee
+}
+
+int returnBook(T_Bibliotheque *biblio) {
+    char code[MAX_CODE];
+    lireChaine("CODE : ", code, MAX_CODE);
+
+    // Locating the book
+    int i = 0;
+    int book_index;
+    while (i < biblio->nbLivres) {
+        if (strcmp(code, biblio->etagere[i].code) == 0) {
+            book_index = i;
+        }
+        i++;
+    }
+
+    // If the book was not found return
+    if (strcmp(biblio->etagere[book_index].code, code)) {
+        return 0;
+    }
+
+
+    strcpy(biblio->etagere[book_index].emprunteur.nomemprunteur, "");
+
+    return 1;
 }

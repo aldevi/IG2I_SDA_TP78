@@ -75,7 +75,8 @@ int main() {
 			break;
 
 			case 7 :
-
+				reponse = returnBook(&B);
+				if (reponse == 0) printf("Le livre n'a pu être restitué\n");
 			break;
 
 			case 8 :
