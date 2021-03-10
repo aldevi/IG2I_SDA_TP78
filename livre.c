@@ -1,4 +1,5 @@
 #include "livre.h"
+#include "date.h"
 
 
 void saisirLivre(T_livre * ptrL)
@@ -13,6 +14,8 @@ void afficherLivre(const T_livre *ptrL) {
     afficherChaine("CODE : ", ptrL->code);
     afficherChaine("EDITEUR : ", ptrL->editeur);
     printf("ANNEE EDITION : %d\n", ptrL->annee);
-    if(strcmp(ptrL->emprunteur.nomemprunteur, "") != 0) afficherChaine("Emprunteur :", ptrL->emprunteur.nomemprunteur);
+    if(strcmp(ptrL->emprunteur.nomemprunteur, "") != 0){
+        afficherChaine("EMPRUNTEUR :", ptrL->emprunteur.nomemprunteur);
+        printf("DATE D'EMPRUNT : %s %d %s %d\n", lejour(ptrL->emprunteur.lejour), ptrL->emprunteur.ledate, lemois(ptrL->emprunteur.lemois), ptrL->emprunteur.lannee);
+    }
 }
-
