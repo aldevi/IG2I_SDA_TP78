@@ -114,6 +114,21 @@ int sortByAuthor(T_Bibliotheque *ptrB){
     else return 0;
 }
 
+int sortByYear(T_Bibliotheque *ptrB){
+    if(ptrB->nbLivres > 0){
+        int i;
+        int j;
+        int ref;
+        for (i=0 ; i <= ptrB->nbLivres ; i++){
+            ref = i;
+            for (j=i+1 ; j < ptrB->nbLivres ; j++) if (ptrB->etagere[j].annee < ptrB->etagere[ref].annee) ref=j;
+            if (ref != i) switchBook(&(ptrB->etagere[i]), &(ptrB->etagere[ref]));
+        }
+        return 1;
+    }
+    else return 0;
+}
+
 void switchBook(T_livre *ptrA, T_livre *ptrB){
     int iaux;
     char caux[500];

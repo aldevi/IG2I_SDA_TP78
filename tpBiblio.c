@@ -89,7 +89,8 @@ int main() {
 			break;
 
 			case 10 :
-
+				reponse = sortByYear(&B);
+				if (reponse == 0) printf("La bibliothèque est vide\n");
 			break;
 		}
 

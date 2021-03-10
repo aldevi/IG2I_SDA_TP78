@@ -9,5 +9,6 @@ int removeBook(T_Bibliotheque *ptrB);
 int borrowBook(T_Bibliotheque *biblio);
 int sortByAuthor(T_Bibliotheque *ptrB);
 int sortByTitle(T_Bibliotheque *ptrB);
+int sortByYear(T_Bibliotheque *ptrB);
 
 #endif
