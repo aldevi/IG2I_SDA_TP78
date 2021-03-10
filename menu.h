@@ -3,6 +3,7 @@
 
 #include "biblio.h"
 
+void switchBook(T_livre *ptrA, T_livre *ptrB);
 int searchBook(T_Bibliotheque *biblio);
 int searchAuthor(T_Bibliotheque *ptrB);
 int removeBook(T_Bibliotheque *ptrB);

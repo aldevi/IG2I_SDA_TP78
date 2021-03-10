@@ -5,8 +5,6 @@
 #include <string.h>
 #include <stdio.h>
 
-void switchBook(T_livre *ptrA, T_livre *ptrB);
-
 int searchBook(T_Bibliotheque *biblio) {
     int books_found = 0;
 
